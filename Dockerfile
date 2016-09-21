@@ -1,10 +1,20 @@
 FROM ruby:2.2.0
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+
+RUN apt-get update -qq && apt-get install -y \
+    build-essential \
+    libpq-dev
+
 RUN mkdir /acessoajustica
 WORKDIR /acessoajustica
-ADD Gemfile /acessoajustica/Gemfile
-# PhantomJS
-RUN bundle install --jobs 8
+
+ADD Gemfile .
+ADD Gemfile.lock .
+RUN bundle install
+
 ADD . /acessoajustica
+
+# PhantomJS
 RUN mv lib/assets/phantomjs-1.9.8-linux-x86_64 /opt/
 RUN ln -s /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /bin/phantomjs
+
+CMD bundle exec rails s -p 3000 -b '0.0.0.0'
