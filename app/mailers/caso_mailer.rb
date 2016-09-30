@@ -5,7 +5,13 @@ class CasoMailer < ApplicationMailer
     @user = user
     @atualizacao = atualizacao
 
-    mail(to: @user.email, subject: 'Intimações do dia ' \
-         + atualizacao[:date])
+    mail(to: @user.email, subject: 'Intimações do dia ' + atualizacao[:date])
+  end
+
+  def feed_de_estagiarios(user, atualizacao)
+    @user = user
+    @atualizacao = atualizacao
+
+    mail(to: @user.email, subject: 'Atualizações de processos dos estagiários ' + atualizacao[:date])
   end
 end
