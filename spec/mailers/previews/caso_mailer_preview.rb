@@ -19,7 +19,7 @@ class CasoMailerPreview < ActionMailer::Preview
                     caderno: 'Judicial - 1ª Instância - Capital',
                     secao: 'Fóruns Regionais e Distritais I - Santana, Casa Verde, Vila Maria e Tucuruvi Cível 4ª Vara da Família e Sucessões',
                     pagina: 1899,
-                    atualizacao: 
+                    atualizacao:
                       'Processo 0011953-02.2016.8.26.0001 (processo principal 0027902-08.2012.8.26) - Cumprimento de sentença - Revisão - Julia Pereia de Oliveira - Marco Antonio Pereira da Silva - Vistos.Em se tratando de satisfação de verba alimentar, dotada de peculiaridades prestações continuadas, com períodos e ritos diversos - e visando inclusive o célere processamento, proceda o interessado à distribuição de execução autônoma por dependência a este Juízo. Int. - ADV: LEANDRO ANDRÉ FRANCISCO LIMA (OAB 183134/SP), FERNANDO MANGIANELLI BEZZI (OAB 299878/SP), CAMILA MOURA (OAB 299825/SP)'
                   },
               ]
@@ -35,7 +35,7 @@ class CasoMailerPreview < ActionMailer::Preview
                     caderno: 'Normal',
                     secao: 'MINISTÉRIO PÚBLICO III - AVISOS',
                     pagina: 50,
-                    atualizacao: 
+                    atualizacao:
                       'Aviso de 29-7-2016 Nº 346/2016 ? PGJ O Procurador-Geral de Justiça, no uso de suas atribuições normais, PUBLICA, nos termos do artigo 4º, § 1º, do Ato Nor- mativo 965/2016-PGJ, a Escala de Participação nas Audiências de Custódia do Interior, referente ao mês de AGOSTO de 2016. 3ª CIRCUNSCRIÇÃO JUDICIÁRIA - SANTO ANDRÉ DIAS 3, 10, 17, 24 E 31: Manuela Schreiber Silva e Sousa Marcelo Santos Nunes (Republicada por necessidade de retificação ? doe de 30-07-2016)'
                   },
                   {
@@ -45,7 +45,7 @@ class CasoMailerPreview < ActionMailer::Preview
                     caderno: 'Normal',
                     secao: 'MINISTÉRIO PÚBLICO III - AVISOS',
                     pagina: 57,
-                    atualizacao: 
+                    atualizacao:
                       'Aviso de 1-9-2016 nº 389/2016 ? PGJ O Procurador-Geral de Justiça, no uso de suas atribuições normais, PUBLICA, nos termos do artigo 4º, § 1º, do Ato Norma- tivo 965/2016-PGJ, a Escala de Participação nas Audiências de Custódia do Interior, referente ao mês de SETEMBRO de 2016. 3ª CIRCUNSCRIÇÃO JUDICIÁRIA - SANTO ANDRÉ DIAS 14, 21 E 28: Manuela Schreiber Silva e Sousa Marcelo Santos Nunes'
                   }
               ]
@@ -65,12 +65,12 @@ class CasoMailerPreview < ActionMailer::Preview
       date: Time.new(2016,9,16).strftime("%d/%m/%Y"),
       estagiarios: [
       {
-        nome: 'Fulano',
+        nome: 'Augusto dos Anjos',
         id: 1,
         casos: [
             {
                 id: 42,
-                nome_cliente: 'Fulano',
+                nome_cliente: 'Machado de Assis',
                 processos_update: [
                     {
                       processo_id: 1,
@@ -79,7 +79,7 @@ class CasoMailerPreview < ActionMailer::Preview
                       caderno: 'Judicial - 1ª Instância - Capital',
                       secao: 'Fóruns Regionais e Distritais I - Santana, Casa Verde, Vila Maria e Tucuruvi Cível 4ª Vara da Família e Sucessões',
                       pagina: 1899,
-                      atualizacao: 
+                      atualizacao:
                         'Processo 0011953-02.2016.8.26.0001 (processo principal 0027902-08.2012.8.26) - Cumprimento de sentença - Revisão - Julia Pereia de Oliveira - Marco Antonio Pereira da Silva - Vistos.Em se tratando de satisfação de verba alimentar, dotada de peculiaridades prestações continuadas, com períodos e ritos diversos - e visando inclusive o célere processamento, proceda o interessado à distribuição de execução autônoma por dependência a este Juízo. Int. - ADV: LEANDRO ANDRÉ FRANCISCO LIMA (OAB 183134/SP), FERNANDO MANGIANELLI BEZZI (OAB 299878/SP), CAMILA MOURA (OAB 299825/SP)'
                     },
                 ]
@@ -95,7 +95,7 @@ class CasoMailerPreview < ActionMailer::Preview
                       caderno: 'Normal',
                       secao: 'MINISTÉRIO PÚBLICO III - AVISOS',
                       pagina: 50,
-                      atualizacao: 
+                      atualizacao:
                         'Aviso de 29-7-2016 Nº 346/2016 ? PGJ O Procurador-Geral de Justiça, no uso de suas atribuições normais, PUBLICA, nos termos do artigo 4º, § 1º, do Ato Nor- mativo 965/2016-PGJ, a Escala de Participação nas Audiências de Custódia do Interior, referente ao mês de AGOSTO de 2016. 3ª CIRCUNSCRIÇÃO JUDICIÁRIA - SANTO ANDRÉ DIAS 3, 10, 17, 24 E 31: Manuela Schreiber Silva e Sousa Marcelo Santos Nunes (Republicada por necessidade de retificação ? doe de 30-07-2016)'
                     },
                     {
@@ -105,14 +105,14 @@ class CasoMailerPreview < ActionMailer::Preview
                       caderno: 'Normal',
                       secao: 'MINISTÉRIO PÚBLICO III - AVISOS',
                       pagina: 57,
-                      atualizacao: 
+                      atualizacao:
                         'Aviso de 1-9-2016 nº 389/2016 ? PGJ O Procurador-Geral de Justiça, no uso de suas atribuições normais, PUBLICA, nos termos do artigo 4º, § 1º, do Ato Norma- tivo 965/2016-PGJ, a Escala de Participação nas Audiências de Custódia do Interior, referente ao mês de SETEMBRO de 2016. 3ª CIRCUNSCRIÇÃO JUDICIÁRIA - SANTO ANDRÉ DIAS 14, 21 E 28: Manuela Schreiber Silva e Sousa Marcelo Santos Nunes'
                     }
                 ]
             }]
       },
       {
-        nome: 'Cicrano',
+        nome: 'Frodo',
         id: 2,
         casos: [
           {
@@ -126,7 +126,7 @@ class CasoMailerPreview < ActionMailer::Preview
                     caderno: 'Judicial - 1ª Instância - Capital',
                     secao: 'Fóruns Regionais e Distritais I - Santana, Casa Verde, Vila Maria e Tucuruvi Cível 4ª Vara da Família e Sucessões',
                     pagina: 1899,
-                    atualizacao: 
+                    atualizacao:
                       'Processo 0011953-02.2016.8.26.0001 (processo principal 0027902-08.2012.8.26) - Cumprimento de sentença - Revisão - Julia Pereia de Oliveira - Marco Antonio Pereira da Silva - Vistos.Em se tratando de satisfação de verba alimentar, dotada de peculiaridades prestações continuadas, com períodos e ritos diversos - e visando inclusive o célere processamento, proceda o interessado à distribuição de execução autônoma por dependência a este Juízo. Int. - ADV: LEANDRO ANDRÉ FRANCISCO LIMA (OAB 183134/SP), FERNANDO MANGIANELLI BEZZI (OAB 299878/SP), CAMILA MOURA (OAB 299825/SP)'
                   }]
           }]
