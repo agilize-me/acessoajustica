@@ -1,6 +1,6 @@
 <% @atualizacao[:estagiarios].each do |estagiario| %>
   Estagiário <%= estagiario[:nome] %>
-  <% @estagiario[:casos].each do |caso| %>
+  <% estagiario[:casos].each do |caso| %>
     Caso <%= caso[:id] %> - <%= caso[:nome_cliente] %>
     <% caso[:processos_update].each do |processo_update| %>
       Processo número: <%= processo_update[:processo_numero] %>
