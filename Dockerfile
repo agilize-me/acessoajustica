@@ -7,11 +7,11 @@ RUN apt-get update -qq && apt-get install -y \
 RUN mkdir /acessoajustica
 WORKDIR /acessoajustica
 
-ADD Gemfile .
-ADD Gemfile.lock .
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN bundle install
 
-ADD . /acessoajustica
+COPY . /acessoajustica
 
 # PhantomJS
 RUN mv lib/assets/phantomjs-1.9.8-linux-x86_64 /opt/
