@@ -9,6 +9,11 @@
 
 puts 'seeding...'
 
+# Tenant.create nome:"IX de Agosto", subdomain:"ixdeagosto"
+
+puts 'created tenant...'
+# Tenant.find_by(subdomain:"ixdeagosto").switch!
+
 # Creating estado_civil's
 EstadoCivil.find_or_create_by!(:description => "Solteiro")
 EstadoCivil.find_or_create_by!(:description => "Casado")
@@ -48,13 +53,13 @@ MoradiaType.find_or_create_by!(:description => "Cedida")
 MoradiaType.find_or_create_by!(:description => "Outra")
 
 #Creating especialidades
-Especialidade.find_or_create_by!(:description => "Cível");
-Especialidade.find_or_create_by!(:description => "Família");
-Especialidade.find_or_create_by!(:description => "Penal");
-Especialidade.find_or_create_by!(:description => "Previdenciário");
-Especialidade.find_or_create_by!(:description => "Trabalhista");
-Especialidade.find_or_create_by!(:description => "Tributário");
-Especialidade.find_or_create_by!(:description => "N/D");
+# Especialidade.find_or_create_by!(:description => "Cível");
+# Especialidade.find_or_create_by!(:description => "Família");
+# Especialidade.find_or_create_by!(:description => "Penal");
+# Especialidade.find_or_create_by!(:description => "Previdenciário");
+# Especialidade.find_or_create_by!(:description => "Trabalhista");
+# Especialidade.find_or_create_by!(:description => "Tributário");
+# Especialidade.find_or_create_by!(:description => "N/D");
 
 
 case Rails.env
@@ -74,75 +79,75 @@ case Rails.env
     calouro_user.roles << calouro_role
     vareiro_user.roles << vareiro_role
     diretor_user.roles << diretor_role
-
-    # Creating cliente
-    cliente = Cliente.find_or_create_by!(:nome => "João da Silva",
-              :cpf  => "123.456.789-00",
-              :nome_da_mae => "Maria da Penha",
-              :rg  => "12.345.678-9",
-              :cor  => "Negro",
-              :identidade_de_genero => "Homem",
-              :familia_renda  => 1500.00,
-              :profissao_nome  => "Assistente Administrativo",
-              :familia_quantidade => 9,
-              :contribuintes_quantidade => 4,
-              :aprovado => true)
-
-    estagiario = Estagiario.create!(:nome => "Joana Silveira ",
-                                               :cpf =>"123.456.789-00",
-                                               :nome_da_mae  =>  "Maria da Penha",
-                                               :rg  => "12.345.678-9",
-                                               :cor  => "Negro",
-                                               :identidade_de_genero  => "Homem",
-                                               :ano_faculdade  => "1991-03-02")
-
-    estagiario_user.membro_id = estagiario.membro.id
-    estagiario_user.save
-
-    estagiario_diretor = Estagiario.create!(:nome => "Joana Diretora",
-              :cpf =>"123.456.789-01",
-              :nome_da_mae  =>  "Maria Diretora",
-              :rg  => "12.345.678-0",
-              :cor  => "Negro",
-              :identidade_de_genero  => "Mulher",
-              :ano_faculdade  => "1991-03-02")
-
-    diretor_user.membro_id = estagiario_diretor.membro.id
-    diretor_user.save
-
-    resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
-
-    # Creating atendimento
-    atendimento1 = Atendimento.find_or_create_by!(:status => true,
-                                                  :cliente => cliente,
-                                                  :initial_description => 'Relato inicial.')
-
-    atendimento2 = Atendimento.find_or_create_by!(:status => false,
-                                                  :cliente => cliente,
-                                                  :initial_description => 'Relato inicial.')
-
-    atendimento3 = Atendimento.find_or_create_by!(:status => true,
-                                                  :cliente => cliente,
-                                                  :initial_description => 'Relato inicial.',
-                                                  :estagiario => estagiario,
-                                                  :atendimento_resultado => resultado_type)
-
-
-
-    cliente2 = Cliente.find_or_create_by!( :nome => "Abreu da Silva Sauro",
-              :cpf  =>"123.456.789-00",
-              :nome_da_mae => "Maria da Penha",
-              :rg  => "12.345.678-9",
-              :cor  => "Negro",
-              :identidade_de_genero => "Homem",
-              :familia_renda  => 1500.00,
-              :profissao_nome  =>"Assistente Administrativo",
-              :familia_quantidade => 9,
-              :contribuintes_quantidade => 4,
-              :aprovado => true)
-
-    # Creating atendimento
-    atendimento4 = Atendimento.find_or_create_by!(:status => true,
-                                                  :cliente => cliente2,
-                                                  :initial_description => "Relato inicial.")
+    #
+    # # Creating cliente
+    # cliente = Cliente.find_or_create_by!(:nome => "João da Silva",
+    #           :cpf  => "123.456.789-00",
+    #           :nome_da_mae => "Maria da Penha",
+    #           :rg  => "12.345.678-9",
+    #           :cor  => "Negro",
+    #           :identidade_de_genero => "Homem",
+    #           :familia_renda  => 1500.00,
+    #           :profissao_nome  => "Assistente Administrativo",
+    #           :familia_quantidade => 9,
+    #           :contribuintes_quantidade => 4,
+    #           :aprovado => true)
+    #
+    # estagiario = Estagiario.create!(:nome => "Joana Silveira ",
+    #                                            :cpf =>"123.456.789-00",
+    #                                            :nome_da_mae  =>  "Maria da Penha",
+    #                                            :rg  => "12.345.678-9",
+    #                                            :cor  => "Negro",
+    #                                            :identidade_de_genero  => "Homem",
+    #                                            :ano_faculdade  => "1991-03-02")
+    #
+    # estagiario_user.membro_id = estagiario.membro.id
+    # estagiario_user.save
+    #
+    # estagiario_diretor = Estagiario.create!(:nome => "Joana Diretora",
+    #           :cpf =>"123.456.789-01",
+    #           :nome_da_mae  =>  "Maria Diretora",
+    #           :rg  => "12.345.678-0",
+    #           :cor  => "Negro",
+    #           :identidade_de_genero  => "Mulher",
+    #           :ano_faculdade  => "1991-03-02")
+    #
+    # diretor_user.membro_id = estagiario_diretor.membro.id
+    # diretor_user.save
+    #
+    # resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
+    #
+    # # Creating atendimento
+    # atendimento1 = Atendimento.find_or_create_by!(:status => true,
+    #                                               :cliente => cliente,
+    #                                               :initial_description => 'Relato inicial.')
+    #
+    # atendimento2 = Atendimento.find_or_create_by!(:status => false,
+    #                                               :cliente => cliente,
+    #                                               :initial_description => 'Relato inicial.')
+    #
+    # atendimento3 = Atendimento.find_or_create_by!(:status => true,
+    #                                               :cliente => cliente,
+    #                                               :initial_description => 'Relato inicial.',
+    #                                               :estagiario => estagiario,
+    #                                               :atendimento_resultado => resultado_type)
+    #
+    #
+    #
+    # cliente2 = Cliente.find_or_create_by!( :nome => "Abreu da Silva Sauro",
+    #           :cpf  =>"123.456.789-00",
+    #           :nome_da_mae => "Maria da Penha",
+    #           :rg  => "12.345.678-9",
+    #           :cor  => "Negro",
+    #           :identidade_de_genero => "Homem",
+    #           :familia_renda  => 1500.00,
+    #           :profissao_nome  =>"Assistente Administrativo",
+    #           :familia_quantidade => 9,
+    #           :contribuintes_quantidade => 4,
+    #           :aprovado => true)
+    #
+    # # Creating atendimento
+    # atendimento4 = Atendimento.find_or_create_by!(:status => true,
+    #                                               :cliente => cliente2,
+    #                                               :initial_description => "Relato inicial.")
 end

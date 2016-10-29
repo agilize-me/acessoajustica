@@ -5,7 +5,7 @@ gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 5.0.3'
+gem 'sass-rails', '>= 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -57,6 +57,11 @@ gem 'active_record-acts_as' #, '1.0.2'
 gem 'web-console', '~> 2.0', group: :development
 
 gem 'quiet_assets', group: :development
+
+# Multi-tenancy
+gem 'apartment', '~> 1.2'
+
+gem 'sprockets', '3.6.3'
 
 group :development, :test do
 

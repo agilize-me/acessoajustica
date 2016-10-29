@@ -29,6 +29,8 @@ module Myapp
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
     }
 
+    config.middleware.use 'Apartment::Elevators::Subdomain'
+
   end
 
   # console do
