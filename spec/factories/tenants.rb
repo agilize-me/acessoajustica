@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tenant do
-    nome "MyString"
-    subdomain "MyString"
+    nome "IX de Agosto"
+    subdomain "ixdeagosto"
   end
 end

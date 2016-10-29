@@ -93,9 +93,9 @@ Before run any test, set the test enviroment up
 to set up test enviroment, run:
 
 ```
-RAILS_ENV=TEST ./script/alfredo create
-RAILS_ENV=TEST ./script/alfredo seed
-RAILS_ENV=TEST ./script/alfredo migrate
+RAILS_ENV=test ./script/alfredo create
+RAILS_ENV=test ./script/alfredo seed
+RAILS_ENV=test ./script/alfredo migrate
 ```
 
 For more information, run the help option:
