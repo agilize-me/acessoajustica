@@ -6,7 +6,7 @@ class Tenant < ActiveRecord::Base
 
   def self.current
     tenant = Tenant.find_by subdomain:Apartment::Tenant.current
-    raise ::Apartment::TenantNotFound, "Unable to find tenant" unless tenant
+    # raise ::Apartment::TenantNotFound, "Unable to find tenant" unless tenant
     tenant
   end
 
