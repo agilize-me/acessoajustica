@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_tenant_path(@tenant) %> |
-<%= link_to 'Back', tenants_path %>
+<%= link_to 'Editar', edit_tenant_path(@tenant) %> |
+<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+          tenants_path, :class => 'btn btn-default' %>

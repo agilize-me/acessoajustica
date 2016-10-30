@@ -1,6 +1,7 @@
-<h1>Editing Tenant</h1>
+<h2>Editar Extensão</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @tenant %> |
-<%= link_to 'Back', tenants_path %>
+<%= link_to 'Ver detalhes', @tenant %> |
+<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+          tenants_path, :class => 'btn btn-default' %>

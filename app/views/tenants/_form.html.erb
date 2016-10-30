@@ -1,17 +1,22 @@
-<%= form_for(@tenant) do |f| %>
-  <% if @tenant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tenant.errors.count, "error") %> prohibited this tenant from being saved:</h2>
-
-      <ul>
-      <% @tenant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<%= form_for @tenant, :html => { :class => "tenant" } do |f| %>
+  <div class="container-fluid">    
+    <%= render :partial => 'fields', :locals => { :f => f } %>
+    <div class="row">
+      <div class = "col-md-8 col-md-offset-2">
+        <div class="text-right">
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    clientes_path, :class => 'btn btn-default' %>
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+        </div>
+        <hr>
+      </div>
   </div>
+</div>
+
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("div#error_expl").hide();
+  });
+</script>
