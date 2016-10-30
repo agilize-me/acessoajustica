@@ -1,4 +1,5 @@
 class TenantsController < ApplicationController
+  authorize_resource
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
 
   # GET /tenants

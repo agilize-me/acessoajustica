@@ -10,7 +10,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Nome %></th>
+            <th>Nome</th>
             <th>Subdomínio</th>
             <th>Data de Registro</th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,15 +19,14 @@
         <tbody>
           <% @tenants.each do |tenant| %>
             <tr>
-              <td><%= link_to tenant %></td>
-              <td><%= tenant.nome %></td>
+              <td><%= tenant.id %></td>
+              <td><%= link_to tenant.nome, tenant %></td>
               <td><%= tenant.full_url %></td>
               <td><%= tenant.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
               <td>
                <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_tenant_path(tenant), :class => 'btn btn-default btn-xs' %>
                 <%= link_to "Ver detalhes", tenant, :class => 'btn btn-default btn-xs'%>
-                <%= link_to 'Excluir', tenant, method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
           <% end %>
