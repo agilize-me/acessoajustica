@@ -8,11 +8,12 @@
 #
 
 puts 'seeding...'
+unless Tenant.find_by(subdomain:"ixdeagosto").present?
+  Tenant.create nome:"IX de Agosto", subdomain:"ixdeagosto"
+  puts 'created tenant...'
+end
 
-# Tenant.create nome:"IX de Agosto", subdomain:"ixdeagosto"
-
-puts 'created tenant...'
-# Tenant.find_by(subdomain:"ixdeagosto").switch!
+Tenant.find_by(subdomain:"ixdeagosto").switch!
 
 # Creating estado_civil's
 EstadoCivil.find_or_create_by!(:description => "Solteiro")
@@ -41,7 +42,7 @@ vareiro_role    = Role.find_or_create_by!(:name => "vareiro")
 calouro_role    = Role.find_or_create_by!(:name => "calouro")
 estagiario_role = Role.find_or_create_by!(:name => "estagiário")
 
-admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
+admin_user = User.create(:email=>'test@test.com',:username=>'admin',:password=>'password')
 admin_user.roles << admin_role
 
 # Creating moradia_types
@@ -66,10 +67,10 @@ case Rails.env
  when "development"
 
     # Creating admin users
-    estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
-    calouro_user    = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
-    vareiro_user    = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
-    diretor_user    = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
+    estagiario_user = User.create(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
+    calouro_user    = User.create(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
+    vareiro_user    = User.create(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
+    diretor_user    = User.create(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
 
 
 

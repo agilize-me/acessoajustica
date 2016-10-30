@@ -9,8 +9,8 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th><%= model_class.human_attribute_name(:id) %></th>
-            <th><%= model_class.human_attribute_name(:nome) %></th>
+            <th>#</th>
+            <th>Nome %></th>
             <th>Subdomínio</th>
             <th>Data de Registro</th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -21,7 +21,7 @@
             <tr>
               <td><%= link_to tenant %></td>
               <td><%= tenant.nome %></td>
-              <td><%= tenant.subdomain %></td>
+              <td><%= tenant.full_url %></td>
               <td><%= tenant.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
               <td>
                <%= link_to t('.edit', :default => t("helpers.links.edit")),
