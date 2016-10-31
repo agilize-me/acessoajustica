@@ -23,21 +23,23 @@ RSpec.describe TenantsController, type: :controller do
   # Tenant. As you add validations to Tenant, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryGirl.build(:tenant).attributes
+    FactoryGirl.attributes_for(:tenant)
   end
 
   let(:invalid_attributes) do
-    FactoryGirl.build(:tenant, :invalid).attributes
+    FactoryGirl.attributes_for(:tenant, :invalid)
+  end
+
+  before :each do
+    @user = FactoryGirl.build :user
+    User.stubs(:find).returns(@user)
+    sign_in FactoryGirl.create(:user, :admin_user)
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TenantsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
-  before :each do
-    sign_in FactoryGirl.build(:user, :admin_user)
-  end
 
   describe 'GET #index' do
     it 'assigns all tenants as @tenants' do
@@ -106,14 +108,14 @@ RSpec.describe TenantsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        FactoryGirl.attributes_for(:tenant, :new_tenant)
       end
 
       it 'updates the requested tenant' do
         tenant = Tenant.create! valid_attributes
         put :update, { id: tenant.to_param, tenant: new_attributes }, valid_session
         tenant.reload
-        skip('Add assertions for updated state')
+        expect(tenant.nome).to eq(new_attributes[:nome])
       end
 
       it 'assigns the requested tenant as @tenant' do

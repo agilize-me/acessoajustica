@@ -7,5 +7,9 @@ FactoryGirl.define do
       nome nil
     end
 
+    trait :new_tenant do
+      nome "IX de Agosto 2"
+    end
+
   end
 end
