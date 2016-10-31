@@ -1,0 +1,44 @@
+<%- model_class = Tenant -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Extensão" %></h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Subdomínio</th>
+            <th>Data de Registro</th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tenants.each do |tenant| %>
+            <tr>
+              <td><%= tenant.id %></td>
+              <td><%= link_to tenant.nome, tenant %></td>
+              <td><%= tenant.full_url %></td>
+              <td><%= tenant.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td>
+               <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                            edit_tenant_path(tenant), :class => 'btn btn-default btn-xs' %>
+                <%= link_to "Ver detalhes", tenant, :class => 'btn btn-default btn-xs'%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <hr>
+      <div class="text-right">
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+                    new_tenant_path,
+                    :class => 'btn btn-primary' %>
+      </div>
+
+    </div><!-- /col-md-8 -->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->

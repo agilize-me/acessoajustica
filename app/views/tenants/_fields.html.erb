@@ -1,0 +1,45 @@
+<div class="row">
+  <div class = "col-md-8 col-md-offset-2">
+    <% if @tenant.errors.any? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= pluralize(@tenant.errors.count, "erro") %> impediu o cadastro:</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          <% @tenant.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class = "col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Dados</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <%= f.label :nome, "Nome da Extensão", :class => 'control-label' %>
+            <div class="controls">
+              <%= f.text_field :nome, :class =>'form-control nome' %>
+            </div>
+            <%= error_span(@tenant[:nome]) %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :nome, "Subdomínio da Extensão", :class => 'control-label' %>
+            <div class="controls">
+              <%= f.text_field :subdomain, :class =>'form-control subdomain' %>
+            </div>
+            <%= error_span(@tenant[:subdomain]) %>
+          </div>
+        </div><!-- /row -->
+      </div>
+    </div>
+  </div>
+</div>

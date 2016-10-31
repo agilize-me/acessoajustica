@@ -1,6 +1,7 @@
 class Estagiario < ActiveRecord::Base
-  acts_as :membro
-  has_and_belongs_to_many :especialidades, :join_table => :estagiarios_especialidades
+has_and_belongs_to_many :especialidades, :join_table => :estagiarios_especialidades
+
+acts_as :membro
 
   def is_diretor
     @users = User.all.joins(:roles).joins(:membro).where("roles.name = 'diretor'")

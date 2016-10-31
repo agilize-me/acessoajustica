@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => 'Extensão' %></h1>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados da Extensão</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Nome:</strong>
+              <%= @tenant.nome %>
+            </li>
+            <li class="list-group-item">
+              <strong>Subdomínio:</strong>
+              <%= @tenant.subdomain %>
+            </li>
+            <li class="list-group-item">
+              <strong>URL:</strong>
+              <u><%=  @tenant.full_url %></u>
+            </li>
+        </div>
+      </div>
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    tenants_path, :class => 'btn btn-default'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_tenant_path(@tenant), :class => 'btn btn-primary' %>
+      <hr>
+    </div>
+    <!-- /col-md-8 -->
+  </div>
+  <!-- /row -->
+</div>
+<!-- /container-fluid -->
