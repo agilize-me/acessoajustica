@@ -19,141 +19,143 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe TenantsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Tenant. As you add validations to Tenant, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.build(:tenant).attributes
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    FactoryGirl.build(:tenant, :invalid).attributes
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TenantsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all tenants as @tenants" do
+  before :each do
+    sign_in FactoryGirl.build(:user, :admin_user)
+  end
+
+  describe 'GET #index' do
+    it 'assigns all tenants as @tenants' do
       tenant = Tenant.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, {}, valid_session
       expect(assigns(:tenants)).to eq([tenant])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested tenant as @tenant" do
+  describe 'GET #show' do
+    it 'assigns the requested tenant as @tenant' do
       tenant = Tenant.create! valid_attributes
-      get :show, params: {id: tenant.to_param}, session: valid_session
+      get :show, { id: tenant.to_param }, valid_session
       expect(assigns(:tenant)).to eq(tenant)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new tenant as @tenant" do
-      get :new, params: {}, session: valid_session
+  describe 'GET #new' do
+    it 'assigns a new tenant as @tenant' do
+      get :new, {}, valid_session
       expect(assigns(:tenant)).to be_a_new(Tenant)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested tenant as @tenant" do
+  describe 'GET #edit' do
+    it 'assigns the requested tenant as @tenant' do
       tenant = Tenant.create! valid_attributes
-      get :edit, params: {id: tenant.to_param}, session: valid_session
+      get :edit, { id: tenant.to_param }, valid_session
       expect(assigns(:tenant)).to eq(tenant)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Tenant" do
-        expect {
-          post :create, params: {tenant: valid_attributes}, session: valid_session
-        }.to change(Tenant, :count).by(1)
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Tenant' do
+        expect do
+          post :create, { tenant: valid_attributes }, valid_session
+        end.to change(Tenant, :count).by(1)
       end
 
-      it "assigns a newly created tenant as @tenant" do
-        post :create, params: {tenant: valid_attributes}, session: valid_session
+      it 'assigns a newly created tenant as @tenant' do
+        post :create, { tenant: valid_attributes }, valid_session
         expect(assigns(:tenant)).to be_a(Tenant)
         expect(assigns(:tenant)).to be_persisted
       end
 
-      it "redirects to the created tenant" do
-        post :create, params: {tenant: valid_attributes}, session: valid_session
+      it 'redirects to the created tenant' do
+        post :create, { tenant: valid_attributes }, valid_session
         expect(response).to redirect_to(Tenant.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved tenant as @tenant" do
-        post :create, params: {tenant: invalid_attributes}, session: valid_session
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved tenant as @tenant' do
+        post :create, { tenant: invalid_attributes }, valid_session
         expect(assigns(:tenant)).to be_a_new(Tenant)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {tenant: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
+        post :create, { tenant: invalid_attributes }, valid_session
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested tenant" do
-        tenant = Tenant.create! valid_attributes
-        put :update, params: {id: tenant.to_param, tenant: new_attributes}, session: valid_session
-        tenant.reload
-        skip("Add assertions for updated state")
+  describe 'PUT #update' do
+    context 'with valid params' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
       end
 
-      it "assigns the requested tenant as @tenant" do
+      it 'updates the requested tenant' do
         tenant = Tenant.create! valid_attributes
-        put :update, params: {id: tenant.to_param, tenant: valid_attributes}, session: valid_session
+        put :update, { id: tenant.to_param, tenant: new_attributes }, valid_session
+        tenant.reload
+        skip('Add assertions for updated state')
+      end
+
+      it 'assigns the requested tenant as @tenant' do
+        tenant = Tenant.create! valid_attributes
+        put :update, { id: tenant.to_param, tenant: valid_attributes }, valid_session
         expect(assigns(:tenant)).to eq(tenant)
       end
 
-      it "redirects to the tenant" do
+      it 'redirects to the tenant' do
         tenant = Tenant.create! valid_attributes
-        put :update, params: {id: tenant.to_param, tenant: valid_attributes}, session: valid_session
+        put :update, { id: tenant.to_param, tenant: valid_attributes }, valid_session
         expect(response).to redirect_to(tenant)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the tenant as @tenant" do
+    context 'with invalid params' do
+      it 'assigns the tenant as @tenant' do
         tenant = Tenant.create! valid_attributes
-        put :update, params: {id: tenant.to_param, tenant: invalid_attributes}, session: valid_session
+        put :update, { id: tenant.to_param, tenant: invalid_attributes }, valid_session
         expect(assigns(:tenant)).to eq(tenant)
       end
 
       it "re-renders the 'edit' template" do
         tenant = Tenant.create! valid_attributes
-        put :update, params: {id: tenant.to_param, tenant: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        put :update, { id: tenant.to_param, tenant: invalid_attributes }, valid_session
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested tenant" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested tenant' do
       tenant = Tenant.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: tenant.to_param}, session: valid_session
-      }.to change(Tenant, :count).by(-1)
+      expect do
+        delete :destroy, { id: tenant.to_param }, valid_session
+      end.to change(Tenant, :count).by(-1)
     end
 
-    it "redirects to the tenants list" do
+    it 'redirects to the tenants list' do
       tenant = Tenant.create! valid_attributes
-      delete :destroy, params: {id: tenant.to_param}, session: valid_session
+      delete :destroy, { id: tenant.to_param }, valid_session
       expect(response).to redirect_to(tenants_url)
     end
   end
-
 end

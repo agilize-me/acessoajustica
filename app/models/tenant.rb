@@ -1,11 +1,14 @@
 class Tenant < ActiveRecord::Base
-  after_create :add_tenant_to_apartment
+  after_create :create, unless: -> { Rails.env.test? }
+  before_destroy :drop, unless: -> { Rails.env.test? }
 
-  validates :nome, uniqueness: true
-  validates :subdomain, uniqueness: true
+  validates :nome, presence: true, uniqueness: true
+  validates :subdomain, presence: true,
+                        uniqueness: true,
+                        subdomain:  true
 
   def self.current
-    tenant = Tenant.find_by subdomain:Apartment::Tenant.current
+    tenant = Tenant.find_by subdomain: Apartment::Tenant.current
     # raise ::Apartment::TenantNotFound, "Unable to find tenant" unless tenant
     tenant
   end
@@ -19,17 +22,12 @@ class Tenant < ActiveRecord::Base
   end
 
   private
-    def add_tenant_to_apartment
-      Apartment::Tenant.each do |ten|
-        return true if ten == subdomain
-      end
 
-      puts "Creating schema #{subdomain}"
-      Apartment::Tenant.create(subdomain) if unique
-      true
+    def create
+      Apartment::Tenant.create(name)
     end
 
-    def drop_tenant_from_apartment
+    def drop
       Apartment::Tenant.drop(subdomain)
-    end
+    end 
 end
