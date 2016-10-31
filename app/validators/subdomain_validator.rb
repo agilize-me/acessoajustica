@@ -1,7 +1,6 @@
 class SubdomainValidator < ActiveModel::EachValidator
   # http://matthewhutchinson.net/2010/10/27/rails-3-subdomain-validation-activemodeleachvalidator
   # https://gist.github.com/stuartbain/7212385
-
   def validate_each(object, attribute, value)
     return unless value.present?
     reserved_names = %w(www ftp mail pop smtp admin ssl sftp)
