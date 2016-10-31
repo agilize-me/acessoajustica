@@ -24,10 +24,12 @@ class Tenant < ActiveRecord::Base
   private
 
     def create
-      Apartment::Tenant.create(name)
+      unless Apartment.tenant_names.include? subdomain
+        Apartment::Tenant.create(subdomain)
+      end
     end
 
     def drop
       Apartment::Tenant.drop(subdomain)
-    end 
+    end
 end
