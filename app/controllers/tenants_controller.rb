@@ -29,7 +29,7 @@ class TenantsController < ApplicationController
 
     respond_to do |format|
       if @tenant.save
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
+        format.html { redirect_to @tenant, notice: 'Extensão criada com sucesso.' }
         format.json { render :show, status: :created, location: @tenant }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class TenantsController < ApplicationController
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
+        format.html { redirect_to @tenant, notice: 'Extensão atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @tenant }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class TenantsController < ApplicationController
   def destroy
     @tenant.destroy
     respond_to do |format|
-      format.html { redirect_to tenants_url, notice: 'Tenant was successfully destroyed.' }
+      format.html { redirect_to tenants_url, notice: 'Extensão excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
