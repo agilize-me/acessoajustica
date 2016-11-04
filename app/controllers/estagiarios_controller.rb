@@ -2,6 +2,8 @@ class EstagiariosController < ApplicationController
   include EstagiariosHelper
   authorize_resource
   before_action :set_estagiario, only: [:show, :edit, :update, :destroy, :active, :remove_director, :add_director]
+  before_action :switch_tenant, only: [:create]
+  after_action
 
   # GET /estagiarios
   # GET /estagiarios.json
@@ -95,5 +97,19 @@ class EstagiariosController < ApplicationController
       params.require(:estagiario).permit(:ano_faculdade, :nome,
                                          :cpf, :nome_da_mae, :rg, :cor,
                                          :identidade_de_genero, :user_id, :especialidades => [])
+    end
+
+    def switch_tenant
+      if params.has_key?(:tenant)
+        @original_tenant = Tenant.current
+        @tenant = Tenant.find(params[:tenant])
+        @tenant.switch!
+      end
+    end
+
+    def return_tenant
+      if params.has_key?(:tenant)
+        @original_tenant.switch!
+      end
     end
 end

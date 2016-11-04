@@ -23,6 +23,8 @@
               <strong>URL:</strong>
               <u><%=  @tenant.full_url %></u>
             </li>
+            <%= link_to "Cadastrar Usuário", new_user_registration_path(:tenant => @tenant.id),
+            :class => 'btn btn-primary navbar-right'%>
         </div>
       </div>
       <%= link_to t('.back', :default => t("helpers.links.back")),

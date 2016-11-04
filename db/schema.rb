@@ -181,8 +181,8 @@ ActiveRecord::Schema.define(version: 20161028190448) do
   end
 
   create_table "tenants", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "subdomain"
+    t.string   "nome",       null: false
+    t.string   "subdomain",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
