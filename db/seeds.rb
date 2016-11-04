@@ -11,10 +11,13 @@ puts 'seeding...'
 
 # IMPORTANT: seeds run again after the creation of a new tenant.
 # So be careful! Creating a tenant might duplicate data!
+# First, we create ixdeagosto and add users.
  if Apartment::Tenant.current == "public"
    unless Apartment.tenant_names.include? "ixdeagosto"
      Tenant.create nome:"IX de Agosto", subdomain:"ixdeagosto"
      puts 'created tenant "IX de Agosto"'
+     Tenant.find_by(subdomain:"ixdeagosto").switch!
+     puts 'switched to tenant "IX de Agosto"'
    end
  end
 

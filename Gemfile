@@ -38,6 +38,8 @@ gem 'bootstrap-material-design'
 
 gem 'rails_12factor', group: :production
 
+gem 'action_mailer_auto_url_options'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
