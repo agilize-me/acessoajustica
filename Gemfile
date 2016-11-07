@@ -68,7 +68,7 @@ gem 'sprockets', '3.6.3'
 group :development, :test do
 
   # Create test coverage with codeclimate
-  gem "codeclimate-test-reporter", group: :test, require: nil
+  gem "codeclimate-test-reporter", '0.6.0', group: :test, require: nil
 
   # Create test coverage with coveralls
   gem 'coveralls', require: false
