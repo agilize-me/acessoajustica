@@ -51,12 +51,13 @@
 <!-- Cor / Identidade de Gênero -->
 <div class="row">
   <div class="form-group col-md-6 col-sm-6">
-    <%= f.label :cor, :class => 'control-label' %>
+    <%= f.label :cor_id, "Cor", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cor, :class => 'form-control' %>
+      <%= f.select :cor_id, Cor.all.collect {|cor_desc| [cor_desc.description.capitalize, cor_desc.id]}, {:include_blank => true}, {:class => 'form-control'} %>
     </div>
-    <%= error_span(@pessoa[:cor]) %>
+    <%= error_span(@pessoa[:cor_id]) %>
   </div>
+
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label :identidade_de_genero, "Identidade de Gênero", :class => 'control-label' %>
     <div class="controls">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028190448) do
+ActiveRecord::Schema.define(version: 20180406204841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,10 @@ ActiveRecord::Schema.define(version: 20161028190448) do
   add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
   add_index "clientes", ["user_id"], name: "index_clientes_on_user_id", using: :btree
 
+  create_table "cors", force: :cascade do |t|
+    t.string "description"
+  end
+
   create_table "especialidades", force: :cascade do |t|
     t.string "description"
   end
@@ -155,13 +159,15 @@ ActiveRecord::Schema.define(version: 20161028190448) do
     t.string   "cpf"
     t.string   "nome_da_mae"
     t.string   "rg"
-    t.string   "cor"
     t.string   "identidade_de_genero"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "actable_id"
     t.string   "actable_type"
+    t.integer  "cor_id"
   end
+
+  add_index "pessoas", ["cor_id"], name: "index_pessoas_on_cor_id", using: :btree
 
   create_table "profissao_types", force: :cascade do |t|
     t.string   "description"
@@ -224,4 +230,5 @@ ActiveRecord::Schema.define(version: 20161028190448) do
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
   add_foreign_key "clientes", "users"
+  add_foreign_key "pessoas", "cors"
 end

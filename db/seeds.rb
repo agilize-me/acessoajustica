@@ -14,7 +14,7 @@ puts 'seeding...'
 # First, we create ixdeagosto and add users.
  if Apartment::Tenant.current == "public"
    unless Apartment.tenant_names.include? "ixdeagosto"
-     Tenant.create nome:"IX de Agosto", subdomain:"ixdeagosto"
+     Tenant.create! nome:"IX de Agosto", subdomain:"ixdeagosto"
      puts 'created tenant "IX de Agosto"'
      Tenant.find_by(subdomain:"ixdeagosto").switch!
      puts 'switched to tenant "IX de Agosto"'
@@ -61,6 +61,13 @@ MoradiaType.find_or_create_by!(:description => "Própria")
 MoradiaType.find_or_create_by!(:description => "Cedida")
 MoradiaType.find_or_create_by!(:description => "Outra")
 
+#Create cor_type
+branco = Cor.find_or_create_by!(:description => "Branco")
+preto = Cor.find_or_create_by!(:description => "Preto")
+pardo = Cor.find_or_create_by!(:description => "Pardo")
+amarelo = Cor.find_or_create_by!(:description => "Amarelo")
+vermelho = Cor.find_or_create_by!(:description => "Vermelho")
+
 #Creating especialidades
 # Especialidade.find_or_create_by!(:description => "Cível");
 # Especialidade.find_or_create_by!(:description => "Família");
@@ -80,8 +87,6 @@ case Rails.env
     vareiro_user    = User.create(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
     diretor_user    = User.create(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
 
-
-
     # assign the admin role to the admin user.  (This bit of rails
     # magic creates a user_role record in the database.)
     estagiario_user.roles << estagiario_role
@@ -94,7 +99,6 @@ case Rails.env
                :cpf  => "123.456.789-00",
                :nome_da_mae => "Maria da Penha",
                :rg  => "12.345.678-9",
-               :cor  => "Negro",
                :identidade_de_genero => "Homem",
                :familia_renda  => 1500.00,
                :profissao_nome  => "Assistente Administrativo",
@@ -102,13 +106,16 @@ case Rails.env
                :contribuintes_quantidade => 4,
                :aprovado => true)
 
+      cliente.cor = preto
+      cliente.save
+
      estagiario = Estagiario.create!(:nome => "Joana Silveira ",
-                                                :cpf =>"123.456.789-00",
-                                                :nome_da_mae  =>  "Maria da Penha",
-                                                :rg  => "12.345.678-9",
-                                                :cor  => "Negro",
+                                                :cpf =>"123.456.789-02",
+                                                :nome_da_mae  =>  "Maria da Silva",
+                                                :rg  => "12.345.678-3",
                                                 :identidade_de_genero  => "Homem",
-                                                :ano_faculdade  => "1991-03-02")
+                                                :ano_faculdade  => "1991-03-02",
+                                                :cor => amarelo)
 
      estagiario_user.membro_id = estagiario.membro.id
      estagiario_user.save
@@ -117,9 +124,9 @@ case Rails.env
                :cpf =>"123.456.789-01",
                :nome_da_mae  =>  "Maria Diretora",
                :rg  => "12.345.678-0",
-               :cor  => "Negro",
                :identidade_de_genero  => "Mulher",
-               :ano_faculdade  => "1991-03-02")
+               :ano_faculdade  => "1991-03-02",
+               :cor => vermelho)
 
      diretor_user.membro_id = estagiario_diretor.membro.id
      diretor_user.save
@@ -147,13 +154,15 @@ case Rails.env
                :cpf  =>"123.456.789-00",
                :nome_da_mae => "Maria da Penha",
                :rg  => "12.345.678-9",
-               :cor  => "Negro",
                :identidade_de_genero => "Homem",
                :familia_renda  => 1500.00,
                :profissao_nome  =>"Assistente Administrativo",
                :familia_quantidade => 9,
                :contribuintes_quantidade => 4,
                :aprovado => true)
+
+    cliente2.cor = branco
+    cliente2.save
 
      # Creating atendimento
      atendimento4 = Atendimento.find_or_create_by!(:status => true,

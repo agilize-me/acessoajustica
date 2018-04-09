@@ -106,6 +106,12 @@ For more information, run the help option:
 
 The app runs at ```localhost:3000```.
 
+##Multi-tenancy
+We use multi-tenancy to separate data from different domains.
+When using multi-tenancy you cannot test the application by accessing localhost.
+Instead you need to modify the file *hosts* localized in your computer at folder */etc/*
+by adding a line with the *ip* + *name of domain that you are inserting in seed*
+
 ## Troubleshooting
 
 Refer to https://docs.docker.com/compose/rails/.
