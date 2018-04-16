@@ -15,7 +15,14 @@
 
 <div class="row">
   <div class="control-group col-md-12">
-    <%= f.label "Especialidades"%> 
-    <%= f.select :especialidades, get_especialidades_helper(nil), {}, {:multiple => true, :class => 'form-control', :size => 3} %>
+    <%= f.label "Especialidades"%>
+    <ul class="list-group control-group">
+      <% get_especialidades_helper(nil).each do |esp| %>
+        <li class="list-group-item">
+          <%= f.check_box :especialidades, { multiple: true, checked: (@estagiario.especialidades.ids.include? esp[1]) }, esp[1] %>
+          <%= f.label esp[0], :class => 'control-label', :style => 'font-weight: normal;' %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

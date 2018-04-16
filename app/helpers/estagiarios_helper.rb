@@ -8,10 +8,10 @@ module EstagiariosHelper
   def add_all_especialidades(estagiario, especialidades)
   	if especialidades
       especialidades.each do |id|
-        unless id.length  == 0
+        unless id.length  == 0 || id == 0 || id == "0"
           estagiario.especialidades << Especialidade.find(id)
         end
       end
-    end 
+    end
   end
 end

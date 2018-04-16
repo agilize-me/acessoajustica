@@ -88,12 +88,15 @@ class EstagiariosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_estagiario
       @estagiario = Estagiario.find(params[:id])
+      if @user_id.nil?
+        @user_id = @estagiario.user.id
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estagiario_params
       params.require(:estagiario).permit(:ano_faculdade, :nome,
-                                         :cpf, :nome_da_mae, :rg, :cor,
+                                         :cpf, :nome_da_mae, :rg, :cor_id,
                                          :identidade_de_genero, :user_id, :especialidades => [])
     end
 end

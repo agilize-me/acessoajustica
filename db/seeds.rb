@@ -69,13 +69,13 @@ amarelo = Cor.find_or_create_by!(:description => "Amarelo")
 vermelho = Cor.find_or_create_by!(:description => "Vermelho")
 
 #Creating especialidades
-# Especialidade.find_or_create_by!(:description => "Cível");
-# Especialidade.find_or_create_by!(:description => "Família");
-# Especialidade.find_or_create_by!(:description => "Penal");
-# Especialidade.find_or_create_by!(:description => "Previdenciário");
-# Especialidade.find_or_create_by!(:description => "Trabalhista");
-# Especialidade.find_or_create_by!(:description => "Tributário");
-# Especialidade.find_or_create_by!(:description => "N/D");
+Especialidade.find_or_create_by!(:description => "Cível");
+Especialidade.find_or_create_by!(:description => "Família");
+Especialidade.find_or_create_by!(:description => "Penal");
+Especialidade.find_or_create_by!(:description => "Previdenciário");
+Especialidade.find_or_create_by!(:description => "Trabalhista");
+Especialidade.find_or_create_by!(:description => "Tributário");
+Especialidade.find_or_create_by!(:description => "N/D");
 
 
 case Rails.env
