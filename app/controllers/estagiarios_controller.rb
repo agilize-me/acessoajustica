@@ -74,7 +74,8 @@ class EstagiariosController < ApplicationController
   # PATCH/PUT /estagiarios/1.json
   def update
     respond_to do |format|
-      if @estagiario.update(estagiario_params)
+      add_all_especialidades(@estagiario, estagiario_params[:especialidades])
+      if @estagiario.update(estagiario_params.select { | key, value | key != "user_id" and key != "especialidades"})
         format.html { redirect_to @estagiario, notice: 'Estagiario was successfully updated.' }
         format.json { render :show, status: :ok, location: @estagiario }
       else

@@ -7,11 +7,13 @@ module EstagiariosHelper
   end
   def add_all_especialidades(estagiario, especialidades)
   	if especialidades
+      new_especialidade = Array.new
       especialidades.each do |id|
         unless id.length  == 0 || id == 0 || id == "0"
-          estagiario.especialidades << Especialidade.find(id)
+           new_especialidade << Especialidade.find(id)
         end
       end
+      estagiario.especialidades = new_especialidade
     end
   end
 end
