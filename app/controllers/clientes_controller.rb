@@ -68,14 +68,22 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
       @cliente = Cliente.find(params[:id])
+      # @pessoa = Pessoa.where(actable_type: "Cliente", actable_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-      params.require(:cliente).permit(:profissao_nome, :familia_quantidade,
-                                      :familia_renda, :contribuintes_quantidade, :estado_civil_id,
-                                      :moradia_type_id, :profissao_type_id, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor_id, :identidade_de_genero, :aprovado)
+      params.require(:cliente).permit(:profissao_nome, :familia_quantidade, :familia_renda,
+                                      :contribuintes_quantidade, :estado_civil_id, :moradia_type_id,
+                                      :profissao_type_id, :endereco, :bairro,
+                                      :cep, :cidade, :estado, :tem_filhos, :menores_moram_quantidades,
+                                      :maiores_moram_quantidades, :faz_bicos, :salario, :contribuicao_valor,
+                                      :alimentacao_despesa, :saude, :aluguel, :condominio, :agua, :luz, :gas,
+                                      :telefone_despesa, :transporte, :educacao, :obrigacoes_judiciais,
+                                      :financiamentos, :iptu, :total_despesas_fixas, :valor_liquido_rendimento_mensal,
+                                      :codigo, :menores_nao_moram_quantidades, :maiores_nao_moram_quantidades,
+                                      :telefone_contato, :aprovado, :telefone_celular, :nome, :cpf,
+                                        :nome_da_mae, :rg, :cor_id, :identidade_de_genero, :aprovado)
     end
 
 end

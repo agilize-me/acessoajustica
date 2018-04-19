@@ -37,6 +37,43 @@
               <strong>Identidade de Gênero:</strong>
               <%= @cliente.identidade_de_genero %>
             </li>
+            <li class="list-group-item">
+              <strong>Telefone:</strong>
+              <%= @cliente.telefone_contato %>
+            </li>
+            <li class="list-group-item">
+              <strong>Celular:</strong>
+              <%= @cliente.telefone_celular %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Endereço</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>CEP:</strong>
+              <%= @cliente.cep %>
+            </li>
+            <li class="list-group-item">
+              <strong>Estado:</strong>
+              <%= @cliente.estado %>
+            </li>
+            <li class="list-group-item">
+              <strong>Cidade:</strong>
+              <%= @cliente.cidade %>
+            </li>
+            <li class="list-group-item">
+              <strong>Bairro:</strong>
+              <%= @cliente.bairro %>
+            </li>
+            <li class="list-group-item">
+              <strong>Endereço:</strong>
+              <%= @cliente.endereco %>
+            </li>
           </ul>
         </div>
       </div>
@@ -47,16 +84,16 @@
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item">
-              <strong>Renda Familiar:</strong>
-              <%= @cliente.familia_renda %>
+              <strong>Estado Civil:</strong>
+              <%= @cliente.estado_civil.description %>
             </li>
             <li class="list-group-item">
-              <strong>Qtd. Total de Pessoas:</strong>
-              <%= @cliente.familia_quantidade %>
-            </li>
-            <li class="list-group-item">
-              <strong>Qtd. de Contribuintes:</strong>
-              <%= @cliente.contribuintes_quantidade %>
+              <strong>Possui filhos?</strong>
+              <% if @cliente.tem_filhos %>
+                Sim
+              <% else %>
+                Não
+              <% end %>
             </li>
           </ul>
         </div>
@@ -72,12 +109,110 @@
               <%= @cliente.profissao_nome %>
             </li>
             <li class="list-group-item">
-              <strong>Categoria:</strong>
-              <%= @cliente.profissao_type_description %>
+              <strong>Faz bico?:</strong>
+              <%if @cliente.faz_bicos %>
+              Sim
+              <%else%>
+              Não
+              <%end%>
+            </li>
+            <li class="list-group-item">
+              <strong>Complementação:</strong>
+              <%= @cliente.profissao_type.description %>
+            </li>
+            <li class="list-group-item">
+              <strong>Salário:</strong>
+              <%= @cliente.salario %>
+            </li>
+            <li class="list-group-item">
+              <strong>Renda Familiar Média:</strong>
+              <%= @cliente.familia_renda %>
+            </li>
+            <li class="list-group-item">
+              <strong>Quantos Contribuem?:</strong>
+              <%= @cliente.contribuintes_quantidade %>
+            </li>
+            <li class="list-group-item">
+              <strong>Quantidade Total de Pessoas:</strong>
+              <%= @cliente.familia_quantidade %>
+            </li>
+            <li class="list-group-item">
+              <strong>Moradia:</strong>
+              <%= @cliente.moradia_type.description %>
             </li>
           </ul>
         </div>
       </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Triagem Complementar (Renda familiar acima de 3 salários mínimos)</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Alimentação</strong>
+              R$ <%= @cliente.alimentacao_despesa%>
+            </li>
+            <li class="list-group-item">
+              <strong>Saúde</strong>
+              R$ <%= @cliente.saude%>
+            </li>
+            <li class="list-group-item">
+              <strong>Aluguel</strong>
+              R$ <%= @cliente.aluguel%>
+            </li>
+            <li class="list-group-item">
+              <strong>Condomínio</strong>
+              R$ <%= @cliente.condominio%>
+            </li>
+            <li class="list-group-item">
+              <strong>Água</strong>
+              R$ <%= @cliente.agua%>
+            </li>
+            <li class="list-group-item">
+              <strong>Luz</strong>
+              R$ <%= @cliente.luz%>
+            </li>
+            <li class="list-group-item">
+              <strong>Gás</strong>
+              R$ <%= @cliente.gas%>
+            </li>
+            <li class="list-group-item">
+              <strong>Telefone</strong>
+              R$ <%= @cliente.telefone_despesa%>
+            </li>
+            <li class="list-group-item">
+              <strong>Transporte</strong>
+              R$ <%= @cliente.transporte%>
+            </li>
+            <li class="list-group-item">
+              <strong>Financiamentos</strong>
+              R$ <%= @cliente.financiamentos%>
+            </li>
+            <li class="list-group-item">
+              <strong>Valor total das Despesas Fixas</strong>
+              R$ <%= @cliente.total_despesas_fixas%>
+            </li>
+            <li class="list-group-item">
+              <strong>Valor líquido do Rendimento Mensal</strong>
+              R$ <%= @cliente.valor_liquido_rendimento_mensal%>
+            </li>
+            <li class="list-group-item">
+              <strong>Educação</strong>
+              R$ <%= @cliente.educacao%>
+            </li>
+            <li class="list-group-item">
+              <strong>Obrigações Judiciais (ex: pensão alimentícia)</strong>
+              R$ <%= @cliente.obrigacoes_judiciais%>
+            </li>
+            <li class="list-group-item">
+              <strong>Imposto Predial Territorial Urbano (IPTU)</strong>
+              R$ <%= @cliente.iptu%>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Atendimentos</h3>

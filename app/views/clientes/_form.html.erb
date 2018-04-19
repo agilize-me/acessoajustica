@@ -57,6 +57,13 @@
                 </div>
                 <%= error_span(@cliente[:telefone_contato]) %>
               </div>
+              <div class="form-group col-md-6">
+                <%= f.label :telefone_celular, "Celular", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :telefone_celular, :class => 'form-control telefone' %>
+                </div>
+                <%= error_span(@cliente[:telefone_celular]) %>
+              </div>
             </div>
           </div>
         </div>
