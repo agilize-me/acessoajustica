@@ -9,6 +9,23 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
+          <h3 class="panel-title">Dados de Cadastro Interno</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Código da Orientação / Número do Encaminhamento da Defensoria Pública:</strong>
+              <%= @cliente.codigo %>
+            </li>
+            <li class="list-group-item">
+              <strong>Data do Atendimento:</strong>
+              <%= @cliente.created_at.strftime("%m/%d/%Y %H:%M") %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
           <h3 class="panel-title">Dados Pessoais</h3>
         </div>
         <div class="panel-body">

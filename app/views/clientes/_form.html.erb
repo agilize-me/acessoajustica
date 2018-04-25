@@ -10,7 +10,11 @@
             <div class="panel-body">
               <ul>
               <% @cliente.errors.full_messages.each do |msg| %>
+                <%if msg.include? "Aprovado" %>
+                   O campo <strong>Parecer do Setor de Assistência Social</strong> deve ser preenchido!
+                <%else%>
                 <li><%= msg %></li>
+                <%end%>
               <% end %>
               </ul>
             </div>
@@ -74,6 +78,15 @@
           </div>
           <div class="panel-body">
             <div class="row">
+              <div class="form-group col-md-12">
+                <%= f.label :endereco, "Endereço", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :endereco, :class => "form-control" %>
+                </div>
+                <%= error_span(@cliente[:endereco]) %>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
               <div class="form-group col-md-6">
                 <%= f.label :cep, "CEP", :class => 'control-label' %>
                 <div class="controls">
@@ -82,11 +95,11 @@
                 <%= error_span(@cliente[:cep]) %>
               </div>
               <div class="form-group col-md-6">
-                <%= f.label :estado, "Estado", :class => 'control-label' %>
+                <%= f.label :bairro, "Bairro", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.text_field :estado, :class => "form-control", :maxlength => 2 %>
+                  <%= f.text_field :bairro, :class => "form-control" %>
                 </div>
-                <%= error_span(@cliente[:estado]) %>
+                <%= error_span(@cliente[:bairro]) %>
               </div>
             </div><!-- /row -->
             <div class="row">
@@ -98,20 +111,11 @@
                 <%= error_span(@cliente[:cidade]) %>
               </div>
               <div class="form-group col-md-6">
-                <%= f.label :bairro, "Bairro", :class => 'control-label' %>
+                <%= f.label :estado, "Estado", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.text_field :bairro, :class => "form-control" %>
+                  <%= f.text_field :estado, :class => "form-control", :maxlength => 2 %>
                 </div>
-                <%= error_span(@cliente[:bairro]) %>
-              </div>
-            </div><!-- /row -->
-            <div class="row">
-              <div class="form-group col-md-12">
-                <%= f.label :endereco, "Endereço", :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.text_field :endereco, :class => "form-control" %>
-                </div>
-                <%= error_span(@cliente[:endereco]) %>
+                <%= error_span(@cliente[:estado]) %>
               </div>
             </div><!-- /row -->
           </div>

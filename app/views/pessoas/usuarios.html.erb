@@ -1,0 +1,63 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Usuários" %></h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= model_class.human_attribute_name(:id) %></th>
+            <th><%= model_class.human_attribute_name(:nome) %></th>
+            <th>Perfil</th>
+            <th>Último acesso</th>
+            <th>Ativo</th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @usuarios.each do |usuario| %>
+            <tr>
+              <td><%= usuario.user.id %></td>
+              <td><%= usuario.nome %></td>
+              <td><%= usuario.membro.actable_type %></td>
+              <td><%= usuario.membro.user.last_sign_in_at != nil ? usuario.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td><%= usuario.membro.user.active? ? "Ativo" : "Desativado" %></td>
+              <td>
+                <% case usuario.membro.actable_type%>
+                  <% when "Estagiario"%>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_estagiario_path(usuario), :class => 'btn btn-default btn-xs' %>
+                  <%= link_to "Ver detalhes", estagiario_path(usuario), :class => 'btn btn-default btn-xs'%>
+                  <%= link_to usuario.membro.user.active? ? "Desativar" : "Ativar", active_estagiario_path(usuario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
+                  <% if !usuario.is_diretor %>
+                    <%= link_to "Tornar Diretor", add_director_path(usuario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
+                  <% end %>
+                  <% when "Calouro"%>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_calouro_path(usuario), :class => 'btn btn-default btn-xs' %>
+                  <%= link_to "Ver detalhes", calouro_path(usuario), :class => 'btn btn-default btn-xs'%>
+                  <%= link_to usuario.membro.user.active? ? "Desativar" : "Ativar", active_calouro_path(usuario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
+                  <% when "Vareiro"%>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_vareiro_path(usuario), :class => 'btn btn-default btn-xs' %>
+                  <%= link_to "Ver detalhes", vareiro_path(usuario), :class => 'btn btn-default btn-xs'%>
+                  <%= link_to usuario.membro.user.active? ? "Desativar" : "Ativar", active_vareiro_path(usuario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
+                <% end %>
+
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <hr>
+      <div class="text-right">
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+                    new_user_registration_path,
+                    :class => 'btn btn-primary' %>
+      </div>
+    </div><!-- /col-md-8 -->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->

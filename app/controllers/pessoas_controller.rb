@@ -22,6 +22,18 @@ class PessoasController < ApplicationController
   def edit
   end
 
+  def usuarios
+    estagiarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
+    calouros = Calouro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
+    vareiros = Vareiro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
+
+    @usuarios = estagiarios
+    @usuarios.concat calouros
+    @usuarios.concat vareiros
+
+
+  end
+
   # POST /pessoas
   # POST /pessoas.json
   def create

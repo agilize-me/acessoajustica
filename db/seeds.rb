@@ -80,7 +80,6 @@ Especialidade.find_or_create_by!(:description => "N/D");
 
 case Rails.env
  when "development"
-
     # Creating admin users
     estagiario_user = User.create(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
     calouro_user    = User.create(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
@@ -128,8 +127,32 @@ case Rails.env
                :ano_faculdade  => "1991-03-02",
                :cor => vermelho)
 
-     diretor_user.membro_id = estagiario_diretor.membro.id
+     diretor_membro = Membro.where(:actable_id => estagiario_diretor.id, :actable_type => "Estagiario").first
+     diretor_user.membro_id = diretor_membro.id
      diretor_user.save
+
+     calouro = Calouro.create!(:nome => "Devon Carter",
+                                          :cpf => "009029125213",
+                                          :nome_da_mae => "Clayton Hammond",
+                                          :rg => "850470618",
+                                          :identidade_de_genero => "Homem",
+                                          :ano_faculdade => "2017-02-14",
+                                          :cor => vermelho)
+
+     calouro_user.membro_id = calouro.membro.id
+     calouro_user.save
+
+     vareiro = Vareiro.create!(:nome => "Alice White",
+                                          :cpf => "12343289700",
+                                          :nome_da_mae => "Fernanda Brown",
+                                          :rg => "235869834",
+                                          :identidade_de_genero => "Mulher",
+                                          :forum => "AAA",
+                                          :ano_faculdade => "2017-02-14",
+                                          :cor => branco)
+
+     vareiro_user.membro_id = vareiro.membro.id
+     vareiro_user.save
 
      resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "diretores" => "estagiarios#diretores" , as: :diretores
   get "remove_director/:id" => "estagiarios#remove_director" , as: :remove_director
   get "add_director/:id" => "estagiarios#add_director" , as: :add_director
+  get "pessoas/usuarios" => "pessoas#usuarios" , as: :usuarios
 
   resources :vareiros
 
