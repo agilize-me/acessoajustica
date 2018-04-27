@@ -23,15 +23,14 @@ class PessoasController < ApplicationController
   end
 
   def usuarios
-    estagiarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
-    calouros = Calouro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
-    vareiros = Vareiro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
-
-    @usuarios = estagiarios
-    @usuarios.concat calouros
-    @usuarios.concat vareiros
-
-
+    @usuarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
+    @usuarios.concat Calouro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
+    @usuarios.concat Vareiro.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC").to_a
+    
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # POST /pessoas

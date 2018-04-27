@@ -1,0 +1,28 @@
+<%- model_class = User -%>
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="usuarios">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String"><%= model_class.human_attribute_name(:id) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= model_class.human_attribute_name(:nome) %></Data></Cell>
+        <Cell><Data ss:Type="String">Perfil</Data></Cell>
+        <Cell><Data ss:Type="String">Último acesso</Data></Cell>
+        <Cell><Data ss:Type="String">Ativo</Data></Cell>
+      </Row>
+    <% @usuarios.each do |usuario| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= usuario.user.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= usuario.nome %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= usuario.membro.actable_type %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= usuario.membro.user.last_sign_in_at != nil ? usuario.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= usuario.membro.user.active? ? "Ativo" : "Desativado" %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

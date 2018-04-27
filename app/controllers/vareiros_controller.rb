@@ -6,6 +6,10 @@ class VareirosController < ApplicationController
   # GET /vareiros.json
   def index
     @vareiros = Vareiro.all.joins(:membro).joins(:user).order("users.active DESC").order("users.last_sign_in_at DESC")
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /vareiros/1

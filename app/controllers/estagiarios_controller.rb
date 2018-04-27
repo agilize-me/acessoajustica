@@ -7,12 +7,20 @@ class EstagiariosController < ApplicationController
   # GET /estagiarios.json
   def index
     @estagiarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /estagiarios
   def diretores
     @users = User.all.joins(:roles).joins(:membro).where("roles.name = 'diretor'")
     @estagiarios = Estagiario.all.joins(:membro).joins(:user).where("users.id in (?)", @users.ids).order("users.active DESC, users.last_sign_in_at DESC")
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /estagiarios/1

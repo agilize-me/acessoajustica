@@ -36,6 +36,7 @@
       </table>
       <hr>
       <div class="text-right">
+        <%= link_to "Excel", diretores_path(format: "xls"), :class => 'btn btn-success' %>
         <%= link_to t('.new', :default => t("helpers.links.new")),
                     new_user_registration_path,
                     :class => 'btn btn-primary' %>

@@ -1,0 +1,26 @@
+<%- model_class = Calouro -%>
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="calouros">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String"><%= model_class.human_attribute_name(:id) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= model_class.human_attribute_name(:nome) %></Data></Cell>
+        <Cell><Data ss:Type="String">Último acesso</Data></Cell>
+        <Cell><Data ss:Type="String">Ativo</Data></Cell>
+      </Row>
+    <% @calouros.each do |calouro| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= calouro.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= calouro.nome %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= calouro.membro.user.last_sign_in_at != nil ? calouro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= calouro.membro.user.active? ? "Ativo" : "Desativado" %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

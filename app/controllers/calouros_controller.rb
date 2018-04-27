@@ -6,6 +6,10 @@ class CalourosController < ApplicationController
   # GET /calouros.json
   def index
     @calouros = Calouro.all.joins(:membro).joins(:user).order("users.active DESC").order("users.last_sign_in_at DESC")
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /calouros/1
