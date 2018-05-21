@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <%= wicked_pdf_stylesheet_link_tag 'application'%>
+    <meta charset="utf-8">
+  </head>
+  <body style="background-color:white">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 vcenter">
+          <h2 style="font-size:15pt;" >
+            Formulário de Triagem Socioeconômico
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Dados de Cadastro Interno</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Código da Orientação / Número do Encaminhamento da Defensoria Pública:</strong>
+                  <%= @cliente.codigo %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Data do Atendimento:</strong>
+                  <%= @cliente.created_at.strftime("%m/%d/%Y %H:%M") %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Dados Pessoais</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Nome:</strong>
+                  <%= @cliente.nome %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Nome da Mãe:</strong>
+                  <%= @cliente.nome_da_mae %>
+                </li>
+                <li class="list-group-item">
+                  <strong>CPF:</strong>
+                  <%= @cliente.cpf %>
+                </li>
+                <li class="list-group-item">
+                  <strong>RG:</strong>
+                  <%= @cliente.rg %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Cor:</strong>
+                  <%= @cliente.cor.nil? ? "" : @cliente.cor.description %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Identidade de Gênero:</strong>
+                  <%= @cliente.identidade_de_genero %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Telefone:</strong>
+                  <%= @cliente.telefone_contato %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Celular:</strong>
+                  <%= @cliente.telefone_celular %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Endereço</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>CEP:</strong>
+                  <%= @cliente.cep %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Estado:</strong>
+                  <%= @cliente.estado %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Cidade:</strong>
+                  <%= @cliente.cidade %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Bairro:</strong>
+                  <%= @cliente.bairro %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Endereço:</strong>
+                  <%= @cliente.endereco %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Dados Familiares</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Estado Civil:</strong>
+                  <%= @cliente.estado_civil.nil? ? "" : @cliente.estado_civil.description %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Possui filhos?</strong>
+                  <% if @cliente.tem_filhos %>
+                    Sim
+                  <% else %>
+                    Não
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Dados Profissionais</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Profissão:</strong>
+                  <%= @cliente.profissao_nome %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Faz bico?:</strong>
+                  <%if @cliente.faz_bicos %>
+                  Sim
+                  <%else%>
+                  Não
+                  <%end%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Complementação:</strong>
+                  <%= @cliente.profissao_type.nil? ? "" : @cliente.profissao_type.description %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Salário:</strong>
+                  <%= @cliente.salario %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Renda Familiar Média:</strong>
+                  <%= @cliente.familia_renda %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Quantos Contribuem?:</strong>
+                  <%= @cliente.contribuintes_quantidade %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Quantidade Total de Pessoas:</strong>
+                  <%= @cliente.familia_quantidade %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Moradia:</strong>
+                  <%= @cliente.moradia_type.nil? ? "" : @cliente.moradia_type.description %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Triagem Complementar (Renda familiar acima de 3 salários mínimos)</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Alimentação</strong>
+                  R$ <%= @cliente.alimentacao_despesa%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Saúde</strong>
+                  R$ <%= @cliente.saude%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Aluguel</strong>
+                  R$ <%= @cliente.aluguel%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Condomínio</strong>
+                  R$ <%= @cliente.condominio%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Água</strong>
+                  R$ <%= @cliente.agua%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Luz</strong>
+                  R$ <%= @cliente.luz%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Gás</strong>
+                  R$ <%= @cliente.gas%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Telefone</strong>
+                  R$ <%= @cliente.telefone_despesa%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Transporte</strong>
+                  R$ <%= @cliente.transporte%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Financiamentos</strong>
+                  R$ <%= @cliente.financiamentos%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Valor total das Despesas Fixas</strong>
+                  R$ <%= @cliente.total_despesas_fixas%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Valor líquido do Rendimento Mensal</strong>
+                  R$ <%= @cliente.valor_liquido_rendimento_mensal%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Educação</strong>
+                  R$ <%= @cliente.educacao%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Obrigações Judiciais (ex: pensão alimentícia)</strong>
+                  R$ <%= @cliente.obrigacoes_judiciais%>
+                </li>
+                <li class="list-group-item">
+                  <strong>Imposto Predial Territorial Urbano (IPTU)</strong>
+                  R$ <%= @cliente.iptu%>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Atendimentos</h3>
+            </div>
+            <div class="panel-body">
+              <% @cliente.atendimentos.each_with_index do |atendimento, index| %>
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="row-content">
+                      <h4 class="list-group-item-heading">Atendimento #<%= index + 1%></h4>
+                      <span><%= atendimento.detailed_description%></span>
+                    </div>
+                  </div>
+                  <div class="list-group-separator"></div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Assinatura</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Visto:</strong>
+
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <!-- /col-md-8 -->
+      </div>
+      <!-- /row -->
+    </div>
+  </body>
+</html>

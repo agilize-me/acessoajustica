@@ -65,6 +65,11 @@ gem 'apartment', '~> 1.2'
 
 gem 'sprockets', '3.6.3'
 
+#PDF generator
+gem 'wicked_pdf', '~> 1.1'
+#Provides binaries for WKHTMLTOPDF project in an easily accessible package.
+gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
+
 group :development, :test do
 
   # Create test coverage with codeclimate

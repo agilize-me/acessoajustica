@@ -48,7 +48,7 @@
             </li>
             <li class="list-group-item">
               <strong>Cor:</strong>
-              <%= @cliente.cor.description %>
+              <%= @cliente.cor.nil? ? "" : @cliente.cor.description %>
             </li>
             <li class="list-group-item">
               <strong>Identidade de Gênero:</strong>
@@ -102,7 +102,7 @@
           <ul class="list-group">
             <li class="list-group-item">
               <strong>Estado Civil:</strong>
-              <%= @cliente.estado_civil.description %>
+              <%= @cliente.estado_civil.nil? ? "" : @cliente.estado_civil.description %>
             </li>
             <li class="list-group-item">
               <strong>Possui filhos?</strong>
@@ -135,7 +135,7 @@
             </li>
             <li class="list-group-item">
               <strong>Complementação:</strong>
-              <%= @cliente.profissao_type.description %>
+              <%= @cliente.profissao_type.nil? ? "" : @cliente.profissao_type.description %>
             </li>
             <li class="list-group-item">
               <strong>Salário:</strong>
@@ -155,7 +155,7 @@
             </li>
             <li class="list-group-item">
               <strong>Moradia:</strong>
-              <%= @cliente.moradia_type.description %>
+              <%= @cliente.moradia_type.nil? ? "" : @cliente.moradia_type.description %>
             </li>
           </ul>
         </div>
@@ -260,6 +260,7 @@
       </div>
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     clientes_path, :class => 'btn btn-default'  %>
+      <%= link_to "PDF", cliente_path(@cliente, format: "pdf"), :class => 'btn btn-warning', target: :_blank %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_cliente_path(@cliente), :class => 'btn btn-primary' %>
       <hr>
