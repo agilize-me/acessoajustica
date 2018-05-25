@@ -21,8 +21,8 @@
             <tr>
               <td><%= link_to estagiario.id, estagiario_path(estagiario) %></td>
               <td><%= estagiario.nome %></td>
-              <td><%= estagiario.membro.user.last_sign_in_at != nil ? estagiario.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
-              <td><%= estagiario.membro.user.active? ? "Ativo" : "Desativado" %></td>
+              <td><%= estagiario.user.last_sign_in_at != nil ? estagiario.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td><%= estagiario.user.active? ? "Ativo" : "Desativado" %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_estagiario_path(estagiario), :class => 'btn btn-default btn-xs' %>

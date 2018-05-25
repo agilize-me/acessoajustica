@@ -93,102 +93,109 @@ case Rails.env
     vareiro_user.roles << vareiro_role
     diretor_user.roles << diretor_role
 
-     # Creating cliente
-     cliente = Cliente.find_or_create_by!(:nome => "João da Silva",
-               :cpf  => "123.456.789-00",
-               :nome_da_mae => "Maria da Penha",
-               :rg  => "12.345.678-9",
-               :identidade_de_genero => "Homem",
-               :familia_renda  => 1500.00,
-               :profissao_nome  => "Assistente Administrativo",
-               :familia_quantidade => 9,
-               :contribuintes_quantidade => 4,
-               :aprovado => true)
+    # Creating cliente
+    cliente = Cliente.find_or_create_by!(:nome => "João da Silva",
+                                         :cpf  => "123.456.789-00",
+                                         :nome_da_mae => "Maria da Penha",
+                                         :rg  => "12.345.678-9",
+                                         :identidade_de_genero => "Homem",
+                                         :familia_renda  => 1500.00,
+                                         :profissao_nome  => "Assistente Administrativo",
+                                         :familia_quantidade => 9,
+                                         :contribuintes_quantidade => 4,
+                                         :aprovado => true)
 
-      cliente.cor = preto
-      cliente.save
+    cliente.cor = preto
+    cliente.save
 
-     estagiario = Estagiario.create!(:nome => "Joana Silveira ",
-                                                :cpf =>"123.456.789-02",
-                                                :nome_da_mae  =>  "Maria da Silva",
-                                                :rg  => "12.345.678-3",
-                                                :identidade_de_genero  => "Homem",
-                                                :ano_faculdade  => "1991-03-02",
-                                                :cor => amarelo)
+    if Pessoa.find_by(:cpf =>"123.456.789-02").nil?
+      puts "Criando pessoa nova"
+      estagiario = Estagiario.create!(:nome => "Joana Silveira ",
+                                      :cpf =>"123.456.789-02",
+                                      :nome_da_mae  =>  "Maria da Silva",
+                                      :rg  => "12.345.678-3",
+                                      :identidade_de_genero  => "Homem",
+                                      :ano_faculdade  => "1991-03-02",
+                                      :cor => amarelo)
 
-     estagiario_user.membro_id = estagiario.membro.id
-     estagiario_user.save
+      estagiario_user.membro_id = estagiario.membro.id
+      estagiario_user.save
+    end
 
-     estagiario_diretor = Estagiario.create!(:nome => "Joana Diretora",
-               :cpf =>"123.456.789-01",
-               :nome_da_mae  =>  "Maria Diretora",
-               :rg  => "12.345.678-0",
-               :identidade_de_genero  => "Mulher",
-               :ano_faculdade  => "1991-03-02",
-               :cor => vermelho)
+    if Pessoa.find_by(:cpf =>"123.456.789-01").nil?
+      estagiario_diretor = Estagiario.create!(:nome => "Joana Diretora",
+                                              :cpf =>"123.456.789-01",
+                                              :nome_da_mae  =>  "Maria Diretora",
+                                              :rg  => "12.345.678-0",
+                                              :identidade_de_genero  => "Mulher",
+                                              :ano_faculdade  => "1991-03-02",
+                                              :cor => vermelho)
 
-     diretor_membro = Membro.where(:actable_id => estagiario_diretor.id, :actable_type => "Estagiario").first
-     diretor_user.membro_id = diretor_membro.id
-     diretor_user.save
+      diretor_membro = Membro.where(:actable_id => estagiario_diretor.id, :actable_type => "Estagiario").first
+      diretor_user.membro_id = diretor_membro.id
+      diretor_user.save
+    end
 
-     calouro = Calouro.create!(:nome => "Devon Carter",
-                                          :cpf => "009029125213",
-                                          :nome_da_mae => "Clayton Hammond",
-                                          :rg => "850470618",
-                                          :identidade_de_genero => "Homem",
-                                          :ano_faculdade => "2017-02-14",
-                                          :cor => vermelho)
+    if Pessoa.find_by(:cpf => "009029125213").nil?
+      calouro = Calouro.create!(:nome => "Devon Carter",
+                                :cpf => "009029125213",
+                                :nome_da_mae => "Clayton Hammond",
+                                :rg => "850470618",
+                                :identidade_de_genero => "Homem",
+                                :ano_faculdade => "2017-02-14",
+                                :cor => vermelho)
 
-     calouro_user.membro_id = calouro.membro.id
-     calouro_user.save
+      calouro_user.membro_id = calouro.membro.id
+      calouro_user.save
+    end
 
-     vareiro = Vareiro.create!(:nome => "Alice White",
-                                          :cpf => "12343289700",
-                                          :nome_da_mae => "Fernanda Brown",
-                                          :rg => "235869834",
-                                          :identidade_de_genero => "Mulher",
-                                          :forum => "AAA",
-                                          :ano_faculdade => "2017-02-14",
-                                          :cor => branco)
+    if Pessoa.find_by(:cpf => "12343289700").nil?
+      vareiro = Vareiro.create!(:nome => "Alice White",
+                                :cpf => "12343289700",
+                                :nome_da_mae => "Fernanda Brown",
+                                :rg => "235869834",
+                                :identidade_de_genero => "Mulher",
+                                :forum => "AAA",
+                                :ano_faculdade => "2017-02-14",
+                                :cor => branco)
 
-     vareiro_user.membro_id = vareiro.membro.id
-     vareiro_user.save
+      vareiro_user.membro_id = vareiro.membro.id
+      vareiro_user.save
+    end
 
-     resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
+    resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
 
-     # Creating atendimento
-     atendimento1 = Atendimento.find_or_create_by!(:status => true,
-                                                   :cliente => cliente,
-                                                   :initial_description => 'Relato inicial.')
+    # Creating atendimento
+    atendimento1 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.')
 
-     atendimento2 = Atendimento.find_or_create_by!(:status => false,
-                                                   :cliente => cliente,
-                                                   :initial_description => 'Relato inicial.')
+    atendimento2 = Atendimento.find_or_create_by!(:status => false,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.')
 
-     atendimento3 = Atendimento.find_or_create_by!(:status => true,
-                                                   :cliente => cliente,
-                                                   :initial_description => 'Relato inicial.',
-                                                   :estagiario => estagiario,
-                                                   :atendimento_resultado => resultado_type)
+    atendimento3 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.',
+                                                  :estagiario => estagiario,
+                                                  :atendimento_resultado => resultado_type)
 
-
-
-     cliente2 = Cliente.find_or_create_by!( :nome => "Abreu da Silva Sauro",
-               :cpf  =>"123.456.789-00",
-               :nome_da_mae => "Maria da Penha",
-               :rg  => "12.345.678-9",
-               :identidade_de_genero => "Homem",
-               :familia_renda  => 1500.00,
-               :profissao_nome  =>"Assistente Administrativo",
-               :familia_quantidade => 9,
-               :contribuintes_quantidade => 4,
-               :aprovado => true)
+    cliente2 = Cliente.find_or_create_by!( :nome => "Johnny Marcelo",
+                                           :cpf  =>"123.456.789-53",
+                                           :nome_da_mae => "Carolina Leite",
+                                           :rg  => "12.345.678-9",
+                                           :identidade_de_genero => "Homem",
+                                           :familia_renda  => 1200.00,
+                                           :profissao_nome  =>"Assistente de Limpeza",
+                                           :familia_quantidade => 9,
+                                           :contribuintes_quantidade => 4,
+                                           :aprovado => true)
 
     cliente2.cor = branco
     cliente2.save
 
-     # Creating atendimento
-     atendimento4 = Atendimento.find_or_create_by!(:status => true,
-                                                   :cliente => cliente2,
-                                                   :initial_description => "Relato inicial.")
-end
+    # Creating atendimento
+    atendimento4 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente2,
+                                                  :initial_description => "Relato inicial.")
+  end

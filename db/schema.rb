@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20180417203452) do
     t.integer  "cor_id"
   end
 
-  add_index "pessoas", ["cor_id"], name: "index_pessoas_on_cor_id", using: :btree
+  add_index "pessoas", ["cpf"], name: "index_pessoas_on_cpf", unique: true, using: :btree
 
   create_table "profissao_types", force: :cascade do |t|
     t.string   "description"
